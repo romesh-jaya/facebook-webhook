@@ -9,6 +9,12 @@ const port = process.env.PORT || 3001;
 
 ("use strict");
 
+/**
+ * UPDATE YOUR VERIFY TOKEN
+ *This will be the Verify Token value when you set up webhook
+ **/
+const verify_token = "HAPPY";
+
 // Imports dependencies and set up http server
 const express = require("express"),
   body_parser = require("body-parser"),
@@ -32,12 +38,6 @@ app.post("/webhook", (req, res) => {
 // Accepts GET requests at the /webhook endpoint. You need this URL to setup webhook initially.
 // info on verification request payload: https://developers.facebook.com/docs/graph-api/webhooks/getting-started#verification-requests
 app.get("/webhook", (req, res) => {
-  /**
-   * UPDATE YOUR VERIFY TOKEN
-   *This will be the Verify Token value when you set up webhook
-   **/
-  const verify_token = process.env.VERIFY_TOKEN;
-
   // Parse params from the webhook verification request
   let mode = req.query["hub.mode"];
   let token = req.query["hub.verify_token"];
